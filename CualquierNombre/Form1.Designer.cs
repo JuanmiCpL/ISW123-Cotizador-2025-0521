@@ -36,6 +36,7 @@
             btnCalcular = new Button();
             btnLimpiar = new Button();
             gbCotizador = new GroupBox();
+            btnCopiar = new Button();
             txtHuesped = new TextBox();
             txtTarifa = new TextBox();
             btnImperativo = new Button();
@@ -51,7 +52,6 @@
             lblDescuento = new Label();
             lblSubtotal = new Label();
             lstResultados = new ListBox();
-            btnCopiar = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbCotizador.SuspendLayout();
             gbTotales.SuspendLayout();
@@ -97,7 +97,7 @@
             // chkTemporadaAlta
             // 
             chkTemporadaAlta.AutoSize = true;
-            chkTemporadaAlta.Location = new Point(124, 162);
+            chkTemporadaAlta.Location = new Point(133, 165);
             chkTemporadaAlta.Name = "chkTemporadaAlta";
             chkTemporadaAlta.Size = new Size(190, 24);
             chkTemporadaAlta.TabIndex = 3;
@@ -143,6 +143,16 @@
             gbCotizador.TabIndex = 11;
             gbCotizador.TabStop = false;
             gbCotizador.Text = "Cotizador";
+            // 
+            // btnCopiar
+            // 
+            btnCopiar.Location = new Point(26, 245);
+            btnCopiar.Name = "btnCopiar";
+            btnCopiar.Size = new Size(410, 29);
+            btnCopiar.TabIndex = 13;
+            btnCopiar.Text = "Copiar para WhatsApp";
+            btnCopiar.UseVisualStyleBackColor = true;
+            btnCopiar.Click += btnCopiar_Click;
             // 
             // txtHuesped
             // 
@@ -283,20 +293,10 @@
             // lstResultados
             // 
             lstResultados.FormattingEnabled = true;
-            lstResultados.Location = new Point(494, 21);
+            lstResultados.Location = new Point(494, 19);
             lstResultados.Name = "lstResultados";
             lstResultados.Size = new Size(344, 504);
             lstResultados.TabIndex = 13;
-            // 
-            // btnCopiar
-            // 
-            btnCopiar.Location = new Point(26, 245);
-            btnCopiar.Name = "btnCopiar";
-            btnCopiar.Size = new Size(410, 29);
-            btnCopiar.TabIndex = 13;
-            btnCopiar.Text = "Copiar para WhatsApp";
-            btnCopiar.UseVisualStyleBackColor = true;
-            btnCopiar.Click += btnCopiar_Click;
             // 
             // frmInicio
             // 
