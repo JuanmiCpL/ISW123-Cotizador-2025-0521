@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             lblHuesped = new Label();
-            txtHuesped = new TextBox();
             lblNoches = new Label();
             nudNoches = new NumericUpDown();
             lblTarifa = new Label();
@@ -37,6 +36,7 @@
             btnCalcular = new Button();
             btnLimpiar = new Button();
             gbCotizador = new GroupBox();
+            txtHuesped = new TextBox();
             txtTarifa = new TextBox();
             btnImperativo = new Button();
             gbTotales = new GroupBox();
@@ -51,6 +51,7 @@
             lblDescuento = new Label();
             lblSubtotal = new Label();
             lstResultados = new ListBox();
+            btnCopiar = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbCotizador.SuspendLayout();
             gbTotales.SuspendLayout();
@@ -64,14 +65,6 @@
             lblHuesped.Size = new Size(71, 20);
             lblHuesped.TabIndex = 0;
             lblHuesped.Text = "Huesped:";
-            // 
-            // txtHuesped
-            // 
-            txtHuesped.Location = new Point(235, 25);
-            txtHuesped.Name = "txtHuesped";
-            txtHuesped.Size = new Size(217, 27);
-            txtHuesped.TabIndex = 0;
-            txtHuesped.Visible = false;
             // 
             // lblNoches
             // 
@@ -104,7 +97,7 @@
             // chkTemporadaAlta
             // 
             chkTemporadaAlta.AutoSize = true;
-            chkTemporadaAlta.Location = new Point(134, 173);
+            chkTemporadaAlta.Location = new Point(124, 162);
             chkTemporadaAlta.Name = "chkTemporadaAlta";
             chkTemporadaAlta.Size = new Size(190, 24);
             chkTemporadaAlta.TabIndex = 3;
@@ -113,7 +106,7 @@
             // 
             // btnCalcular
             // 
-            btnCalcular.Location = new Point(181, 226);
+            btnCalcular.Location = new Point(183, 195);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(94, 29);
             btnCalcular.TabIndex = 4;
@@ -123,22 +116,24 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(349, 226);
+            btnLimpiar.Location = new Point(342, 195);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(94, 29);
             btnLimpiar.TabIndex = 5;
             btnLimpiar.Text = "Limpiar";
             btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // gbCotizador
             // 
+            gbCotizador.Controls.Add(btnCopiar);
+            gbCotizador.Controls.Add(txtHuesped);
             gbCotizador.Controls.Add(txtTarifa);
             gbCotizador.Controls.Add(btnImperativo);
             gbCotizador.Controls.Add(nudNoches);
             gbCotizador.Controls.Add(btnLimpiar);
             gbCotizador.Controls.Add(lblHuesped);
             gbCotizador.Controls.Add(btnCalcular);
-            gbCotizador.Controls.Add(txtHuesped);
             gbCotizador.Controls.Add(chkTemporadaAlta);
             gbCotizador.Controls.Add(lblNoches);
             gbCotizador.Controls.Add(lblTarifa);
@@ -149,6 +144,13 @@
             gbCotizador.TabStop = false;
             gbCotizador.Text = "Cotizador";
             // 
+            // txtHuesped
+            // 
+            txtHuesped.Location = new Point(235, 25);
+            txtHuesped.Name = "txtHuesped";
+            txtHuesped.Size = new Size(217, 27);
+            txtHuesped.TabIndex = 12;
+            // 
             // txtTarifa
             // 
             txtTarifa.Location = new Point(235, 118);
@@ -158,7 +160,7 @@
             // 
             // btnImperativo
             // 
-            btnImperativo.Location = new Point(26, 226);
+            btnImperativo.Location = new Point(26, 195);
             btnImperativo.Name = "btnImperativo";
             btnImperativo.Size = new Size(94, 29);
             btnImperativo.TabIndex = 11;
@@ -235,7 +237,7 @@
             // lblTotal
             // 
             lblTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotal.Location = new Point(181, 169);
+            lblTotal.Location = new Point(331, 169);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(40, 20);
             lblTotal.TabIndex = 4;
@@ -244,7 +246,7 @@
             // 
             // lblServicio
             // 
-            lblServicio.Location = new Point(181, 140);
+            lblServicio.Location = new Point(331, 140);
             lblServicio.Name = "lblServicio";
             lblServicio.Size = new Size(36, 20);
             lblServicio.TabIndex = 3;
@@ -253,7 +255,7 @@
             // 
             // lblItbis
             // 
-            lblItbis.Location = new Point(181, 104);
+            lblItbis.Location = new Point(331, 104);
             lblItbis.Name = "lblItbis";
             lblItbis.Size = new Size(36, 20);
             lblItbis.TabIndex = 2;
@@ -262,7 +264,7 @@
             // 
             // lblDescuento
             // 
-            lblDescuento.Location = new Point(181, 41);
+            lblDescuento.Location = new Point(331, 41);
             lblDescuento.Name = "lblDescuento";
             lblDescuento.Size = new Size(36, 20);
             lblDescuento.TabIndex = 1;
@@ -271,7 +273,7 @@
             // 
             // lblSubtotal
             // 
-            lblSubtotal.Location = new Point(181, 71);
+            lblSubtotal.Location = new Point(331, 71);
             lblSubtotal.Name = "lblSubtotal";
             lblSubtotal.Size = new Size(36, 20);
             lblSubtotal.TabIndex = 0;
@@ -285,6 +287,16 @@
             lstResultados.Name = "lstResultados";
             lstResultados.Size = new Size(344, 504);
             lstResultados.TabIndex = 13;
+            // 
+            // btnCopiar
+            // 
+            btnCopiar.Location = new Point(26, 245);
+            btnCopiar.Name = "btnCopiar";
+            btnCopiar.Size = new Size(410, 29);
+            btnCopiar.TabIndex = 13;
+            btnCopiar.Text = "Copiar para WhatsApp";
+            btnCopiar.UseVisualStyleBackColor = true;
+            btnCopiar.Click += btnCopiar_Click;
             // 
             // frmInicio
             // 
@@ -311,7 +323,6 @@
 
         #endregion
         private Label lblHuesped;
-        private TextBox txtHuesped;
         private Label lblNoches;
         private NumericUpDown nudNoches;
         private Label lblTarifa;
@@ -334,5 +345,7 @@
         private Button btnImperativo;
         private ListBox lstResultados;
         private TextBox txtTarifa;
+        private TextBox txtHuesped;
+        private Button btnCopiar;
     }
 }
