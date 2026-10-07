@@ -52,6 +52,7 @@
             lblDescuento = new Label();
             lblSubtotal = new Label();
             lstResultados = new ListBox();
+            btnNivel1 = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbCotizador.SuspendLayout();
             gbTotales.SuspendLayout();
@@ -126,6 +127,7 @@
             // 
             // gbCotizador
             // 
+            gbCotizador.Controls.Add(btnNivel1);
             gbCotizador.Controls.Add(btnCopiar);
             gbCotizador.Controls.Add(txtHuesped);
             gbCotizador.Controls.Add(txtTarifa);
@@ -298,6 +300,16 @@
             lstResultados.Size = new Size(344, 504);
             lstResultados.TabIndex = 13;
             // 
+            // btnNivel1
+            // 
+            btnNivel1.Location = new Point(342, 151);
+            btnNivel1.Name = "btnNivel1";
+            btnNivel1.Size = new Size(94, 29);
+            btnNivel1.TabIndex = 14;
+            btnNivel1.Text = "button1";
+            btnNivel1.UseVisualStyleBackColor = true;
+            btnNivel1.Click += btnNivel1_Click;
+            // 
             // frmInicio
             // 
             AcceptButton = btnCalcular;
@@ -347,5 +359,7 @@
         private TextBox txtTarifa;
         private TextBox txtHuesped;
         private Button btnCopiar;
+        private Button button1;
+        private Button btnNivel1;
     }
 }

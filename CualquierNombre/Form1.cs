@@ -108,5 +108,13 @@ namespace CualquierNombre
             MessageBox.Show("Cotización copiada. Ya puedes pegarla en WhatsApp.", "Listo",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnNivel1_Click(object sender, EventArgs e)
+        
+        {
+            int n = 4;
+            decimal t = 100m;
+            decimal total = n * t * 1.28m;
+        }
     }
 }
