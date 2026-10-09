@@ -60,10 +60,14 @@ namespace CualquierNombre
                 Huesped = txtHuesped.Text.Trim(),
                 Noches = (int)nudNoches.Value,
                 TarifaPorNoche = tarifa,
-                EsTemporadaAlta = chkTemporadaAlta.Checked
+                EsTemporadaAlta = chkTemporadaAlta.Checked,
+                EsFinDeSemana = chkFinSemana.Checked
             };
 
+
+
             lblSubtotal.Text = reserva.Subtotal.ToString("N2");
+
             lblDescuento.Text = "-" + reserva.Descuento.ToString("N2");
             lblItbis.Text = reserva.Itbis.ToString("N2");
             lblServicio.Text = reserva.Servicio.ToString("N2");
@@ -110,11 +114,65 @@ namespace CualquierNombre
         }
 
         private void btnNivel1_Click(object sender, EventArgs e)
-        
+
         {
             int n = 4;
             decimal t = 100m;
             decimal total = n * t * 1.28m;
+            lstResultados.Items.Add($"Total: {total:N2}");
+        }
+
+        private void btnPesos_Click(object sender, EventArgs e)
+        {
+            decimal tasa = nudTasa.Value;
+            decimal pesos = tasa * Convert.ToDecimal(lblTotal.Text);
+            lstResultados.Items.Add($"Total en pesos: RD$ {pesos:N2}");
+        }
+
+        private void btnPorPersona_Click(object sender, EventArgs e)
+        {
+            decimal Total = Convert.ToDecimal(lblTotal.Text);
+            decimal personas = nudPersonas.Value;
+            decimal totalPorPersona = Total / personas;
+            lstResultados.Items.Add($"Total por persona: US$ {totalPorPersona:N2}");
+        }
+
+        private void btnDeposito_Click(object sender, EventArgs e)
+        {
+            decimal total = Convert.ToDecimal(lblTotal.Text);
+            decimal deposito = 0.30m * total;
+            decimal saldoPendiente = total - deposito;
+            lstResultados.Items.Add($"Depósito: US$ {deposito:N2}");
+            lstResultados.Items.Add($"Saldo Pendiente: US$ {saldoPendiente:N2}");
+        }
+
+        private void chkFinSemana_CheckedChanged(object sender, EventArgs e)
+        {
+            decimal total = Convert.ToDecimal(lblTotal.Text);
+            decimal recargoFinSemana = 0.15m * total;
+        }
+
+        private void btnFinSemana_Click(object sender, EventArgs e)
+        {
+            decimal total = Convert.ToDecimal(lblTotal.Text);
+            decimal recargoFinSemana = 0.15m * total;
+            decimal TotalConRecargo = total + recargoFinSemana;
+            lstResultados.Items.Add($"Recargo Fin de Semana: US$ {TotalConRecargo:N2}");
+        }
+
+        private void btnDesglose_Click(object sender, EventArgs e)
+        {
+            decimal subtotal = Convert.ToDecimal(lblSubtotal.Text);
+            decimal descuento = Convert.ToDecimal(lblDescuento.Text);
+            decimal itbis = Convert.ToDecimal(lblItbis.Text);
+            decimal servicio = Convert.ToDecimal(lblServicio.Text);
+            decimal total = Convert.ToDecimal(lblTotal.Text);
+
+            lstResultados.Items.Add($"Subtotal: {subtotal:N2}");
+            lstResultados.Items.Add($"Descuento: {descuento:N2}");
+            lstResultados.Items.Add($"ITBIS: {itbis:N2}");
+            lstResultados.Items.Add($"Servicio: {servicio:N2}");
+            lstResultados.Items.Add($"Total: {total:N2}");
         }
     }
 }

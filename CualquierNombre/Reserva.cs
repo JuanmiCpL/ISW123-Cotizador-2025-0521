@@ -7,15 +7,21 @@ public class Reserva
     private const decimal TasaDescuento = 0.10m;
     private const decimal RecargoTemporadaAlta = 0.25m;
     private const int NochesParaDescuento = 7;
+    private const decimal RecargoFinSemana = 0.15m;
 
     public string Huesped { get; set; } = "";
     public int Noches { get; set; }
     public decimal TarifaPorNoche { get; set; }
     public bool EsTemporadaAlta { get; set; }
+    public bool EsFinDeSemana { get; set; }
 
     public decimal Subtotal => EsTemporadaAlta
         ? Noches * TarifaPorNoche * (1 + RecargoTemporadaAlta)
         : Noches * TarifaPorNoche;
+
+    public decimal Subtotall => EsFinDeSemana
+    ? Noches * TarifaPorNoche * (1 + RecargoFinSemana)
+    : Noches * TarifaPorNoche;
 
     public decimal Descuento =>
         Noches >= NochesParaDescuento ? Subtotal * TasaDescuento : 0m;
