@@ -17,7 +17,12 @@ namespace CualquierNombre
         {
             string huesped = txtHuesped.Text;
             int noches = (int)nudNoches.Value;
-            decimal tarifa = Convert.ToDecimal(nudTarifa.Value);
+
+            if (!decimal.TryParse(txtTarifa.Text, out decimal tarifa) || tarifa <= 0)
+            {
+                MessageBox.Show("Ingresa una tarifa válida.");
+                return;
+            }
 
             decimal subtotal = noches * tarifa;
             decimal descuento = 0m;
@@ -168,11 +173,87 @@ namespace CualquierNombre
             decimal servicio = Convert.ToDecimal(lblServicio.Text);
             decimal total = Convert.ToDecimal(lblTotal.Text);
 
-            lstResultados.Items.Add($"Subtotal: {subtotal:N2}");
-            lstResultados.Items.Add($"Descuento: {descuento:N2}");
-            lstResultados.Items.Add($"ITBIS: {itbis:N2}");
-            lstResultados.Items.Add($"Servicio: {servicio:N2}");
-            lstResultados.Items.Add($"Total: {total:N2}");
+            lstResultados.Items.Add($"Subtotal: US${subtotal:N2}");
+            lstResultados.Items.Add($"Descuento: US${descuento:N2}");
+            lstResultados.Items.Add($"ITBIS: US${itbis:N2}");
+            lstResultados.Items.Add($"Servicio: US${servicio:N2}");
+            lstResultados.Items.Add($"Total: US${total:N2}");
+        }
+
+        private void btnTraslado_Click(object sender, EventArgs e)
+        {
+            TrasladoAeropuerto Traslado = new TrasladoAeropuerto
+            {
+                Pasajeros = 3,
+                Nocturno = true
+            };
+
+            lstResultados.Items.Add($"Traslado: US${Traslado.Pasajeros:F2}");
+            lstResultados.Items.Add($"Subtotal: US${Traslado.Subtotal:F2}");
+            lstResultados.Items.Add($"Recargo: US${Traslado.Recargo:F2}");
+            lstResultados.Items.Add($"Total: US${Traslado.Total:F2}");
+        }
+
+        private void btnExcursion_Click(object sender, EventArgs e)
+        {
+            Excursion excursion = new Excursion
+            {
+                Personas = 3,
+                PrecioPorPersona = 50m
+            };
+            lstResultados.Items.Add($"Excursión: US${excursion.Personas:F2}");
+            lstResultados.Items.Add($"Subtotal: US${excursion.Subtotal:F2}");
+            lstResultados.Items.Add($"Descuento: US${excursion.Descuento:F2}");
+            lstResultados.Items.Add($"Total: US${excursion.Total:F2}");
+        }
+
+        private void btnMinibar_Click(object sender, EventArgs e)
+        {
+            ConsumoMinibar minibar = new ConsumoMinibar
+            {
+                Cantidad = 3,
+                PrecioUnitario = 3.50m
+            };
+            lstResultados.Items.Add($"Consumo en minibar: US${minibar.Cantidad:F2}");
+            lstResultados.Items.Add($"Subtotal: US${minibar.Subtotal:F2}");
+            lstResultados.Items.Add($"ITBIS: US${minibar.itbis:F2}");
+            lstResultados.Items.Add($"Total: US${minibar.Total:F2}");
+        }
+
+        private void btnCuentaTotal_Click(object sender, EventArgs e)
+        {
+            Reserva reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = decimal.TryParse(txtTarifa.Text, out decimal tarifa) ? tarifa : 0m,
+                EsTemporadaAlta = chkTemporadaAlta.Checked,
+                EsFinDeSemana = chkFinSemana.Checked
+            };
+
+            TrasladoAeropuerto Traslado = new TrasladoAeropuerto
+            {
+                Pasajeros = 3,
+                Nocturno = true
+            };
+            Excursion excursion = new Excursion
+            {
+                Personas = 5,
+                PrecioPorPersona = 50m
+            };
+            ConsumoMinibar minibar = new ConsumoMinibar
+            {
+                Cantidad = 3,
+                PrecioUnitario = 3.50m
+            };
+
+            lblTotal.Text = reserva.Total.ToString("N2");
+            lstResultados.Items.Add($"Reserva: US${reserva.Total:F2}");
+            lstResultados.Items.Add($"Traslado: US${Traslado.Total:F2}");
+            lstResultados.Items.Add($"Excursión: US${excursion.Total:F2}");
+            lstResultados.Items.Add($"Consumo en minibar: US${minibar.Total:F2}");
+
+            lstResultados.Items.Add($"Cuenta total: US${reserva.Total + Traslado.Total + excursion.Total + minibar.Total:F2}");
         }
     }
 }

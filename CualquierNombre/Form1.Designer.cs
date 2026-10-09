@@ -36,6 +36,10 @@
             btnCalcular = new Button();
             btnLimpiar = new Button();
             gbCotizador = new GroupBox();
+            btnCuentaTotal = new Button();
+            btnMinibar = new Button();
+            btnExcursion = new Button();
+            btnTraslado = new Button();
             btnDesglose = new Button();
             btnFinSemana = new Button();
             chkFinSemana = new CheckBox();
@@ -139,6 +143,10 @@
             // 
             // gbCotizador
             // 
+            gbCotizador.Controls.Add(btnCuentaTotal);
+            gbCotizador.Controls.Add(btnMinibar);
+            gbCotizador.Controls.Add(btnExcursion);
+            gbCotizador.Controls.Add(btnTraslado);
             gbCotizador.Controls.Add(btnDesglose);
             gbCotizador.Controls.Add(btnFinSemana);
             gbCotizador.Controls.Add(chkFinSemana);
@@ -168,6 +176,48 @@
             gbCotizador.TabStop = false;
             gbCotizador.Text = "Cotizador";
             // 
+            // btnCuentaTotal
+            // 
+            btnCuentaTotal.BackColor = Color.FromArgb(128, 255, 255);
+            btnCuentaTotal.ForeColor = SystemColors.ActiveCaptionText;
+            btnCuentaTotal.Location = new Point(26, 385);
+            btnCuentaTotal.Name = "btnCuentaTotal";
+            btnCuentaTotal.Size = new Size(736, 46);
+            btnCuentaTotal.TabIndex = 28;
+            btnCuentaTotal.Text = "CUENTA TOTAL";
+            btnCuentaTotal.UseVisualStyleBackColor = false;
+            btnCuentaTotal.Click += btnCuentaTotal_Click;
+            // 
+            // btnMinibar
+            // 
+            btnMinibar.Location = new Point(26, 315);
+            btnMinibar.Name = "btnMinibar";
+            btnMinibar.Size = new Size(394, 29);
+            btnMinibar.TabIndex = 27;
+            btnMinibar.Text = "Minibar";
+            btnMinibar.UseVisualStyleBackColor = true;
+            btnMinibar.Click += btnMinibar_Click;
+            // 
+            // btnExcursion
+            // 
+            btnExcursion.Location = new Point(26, 350);
+            btnExcursion.Name = "btnExcursion";
+            btnExcursion.Size = new Size(394, 29);
+            btnExcursion.TabIndex = 26;
+            btnExcursion.Text = "Excursion";
+            btnExcursion.UseVisualStyleBackColor = true;
+            btnExcursion.Click += btnExcursion_Click;
+            // 
+            // btnTraslado
+            // 
+            btnTraslado.Location = new Point(448, 350);
+            btnTraslado.Name = "btnTraslado";
+            btnTraslado.Size = new Size(314, 29);
+            btnTraslado.TabIndex = 25;
+            btnTraslado.Text = "Traslado";
+            btnTraslado.UseVisualStyleBackColor = true;
+            btnTraslado.Click += btnTraslado_Click;
+            // 
             // btnDesglose
             // 
             btnDesglose.Location = new Point(448, 315);
@@ -180,7 +230,7 @@
             // 
             // btnFinSemana
             // 
-            btnFinSemana.Location = new Point(448, 267);
+            btnFinSemana.Location = new Point(448, 272);
             btnFinSemana.Name = "btnFinSemana";
             btnFinSemana.Size = new Size(314, 29);
             btnFinSemana.TabIndex = 23;
@@ -278,9 +328,9 @@
             // 
             // btnCopiar
             // 
-            btnCopiar.Location = new Point(11, 424);
+            btnCopiar.Location = new Point(26, 437);
             btnCopiar.Name = "btnCopiar";
-            btnCopiar.Size = new Size(751, 29);
+            btnCopiar.Size = new Size(736, 29);
             btnCopiar.TabIndex = 13;
             btnCopiar.Text = "Copiar para WhatsApp";
             btnCopiar.UseVisualStyleBackColor = true;
@@ -427,7 +477,7 @@
             lstResultados.FormattingEnabled = true;
             lstResultados.Location = new Point(813, 29);
             lstResultados.Name = "lstResultados";
-            lstResultados.Size = new Size(379, 564);
+            lstResultados.Size = new Size(379, 684);
             lstResultados.TabIndex = 13;
             // 
             // frmInicio
@@ -492,5 +542,9 @@
         private CheckBox chkFinSemana;
         private Button btnFinSemana;
         private Button btnDesglose;
+        private Button btnTraslado;
+        private Button btnExcursion;
+        private Button btnMinibar;
+        private Button btnCuentaTotal;
     }
 }
