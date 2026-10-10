@@ -16,12 +16,8 @@ public class Reserva
     public bool EsFinDeSemana { get; set; }
 
     public decimal Subtotal => EsTemporadaAlta
-        ? Noches * TarifaPorNoche * (1 + RecargoTemporadaAlta)
-        : Noches * TarifaPorNoche;
-
-    public decimal Subtotall => EsFinDeSemana
-    ? Noches * TarifaPorNoche * (1 + RecargoFinSemana)
-    : Noches * TarifaPorNoche;
+    ? Noches * TarifaPorNoche * (1 + RecargoTemporadaAlta + (EsFinDeSemana ? RecargoFinSemana : 0m))
+    : Noches * TarifaPorNoche * (1 + (EsFinDeSemana ? RecargoFinSemana : 0m));
 
     public decimal Descuento =>
         Noches >= NochesParaDescuento ? Subtotal * TasaDescuento : 0m;

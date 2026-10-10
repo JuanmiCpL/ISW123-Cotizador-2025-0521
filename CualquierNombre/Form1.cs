@@ -8,10 +8,6 @@ namespace CualquierNombre
         {
             InitializeComponent();
         }
-        private void nudTarifa_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnImperativo_Click(object sender, EventArgs e)
         {
@@ -38,7 +34,6 @@ namespace CualquierNombre
             decimal total = baseImponible + itbis + servicio;
 
             lstResultados.Items.Add($"[Imperativo] {huesped}: US$ {total:N2}");
-
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)
@@ -69,10 +64,7 @@ namespace CualquierNombre
                 EsFinDeSemana = chkFinSemana.Checked
             };
 
-
-
             lblSubtotal.Text = reserva.Subtotal.ToString("N2");
-
             lblDescuento.Text = "-" + reserva.Descuento.ToString("N2");
             lblItbis.Text = reserva.Itbis.ToString("N2");
             lblServicio.Text = reserva.Servicio.ToString("N2");
@@ -85,6 +77,7 @@ namespace CualquierNombre
             txtTarifa.Clear();
             nudNoches.Value = 1;
             chkTemporadaAlta.Checked = false;
+            chkFinSemana.Checked = false;
 
             lblSubtotal.Text = lblDescuento.Text = lblItbis.Text =
                 lblServicio.Text = lblTotal.Text = "0.00";
@@ -151,11 +144,7 @@ namespace CualquierNombre
             lstResultados.Items.Add($"Saldo Pendiente: US$ {saldoPendiente:N2}");
         }
 
-        private void chkFinSemana_CheckedChanged(object sender, EventArgs e)
-        {
-            decimal total = Convert.ToDecimal(lblTotal.Text);
-            decimal recargoFinSemana = 0.15m * total;
-        }
+
 
         private void btnFinSemana_Click(object sender, EventArgs e)
         {
@@ -265,6 +254,62 @@ namespace CualquierNombre
             lstResultados.Items.Add($"Tarifa 200 fin de semana: {SistemaViejo.TarifaFinDeSemana(200m, true):N2} (debe dar 230.00)");
             lstResultados.Items.Add($"Excursión 4 × 50: {SistemaViejo.TotalExcursion(4, 50m):N2} (debe dar 180.00)");
             lstResultados.Items.Add($"Minibar 3 × 4: {SistemaViejo.TotalMinibar(3, 4m):N2} (debe dar 14.16)");
+        }
+
+        private void btnFactura_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtHuesped.Text))
+            {
+                MessageBox.Show("Escribe el nombre del huésped.", "Falta un dato",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtHuesped.Focus();
+                return;
+            }
+
+            if (!decimal.TryParse(txtTarifa.Text, out decimal tarifa) || tarifa <= 0)
+            {
+                MessageBox.Show("La tarifa debe ser un número mayor que cero.", "Dato incorrecto",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTarifa.Focus();
+                txtTarifa.SelectAll();
+                return;
+            }
+            var reserva = new Reserva
+            {
+                Huesped = txtHuesped.Text.Trim(),
+                Noches = (int)nudNoches.Value,
+                TarifaPorNoche = tarifa,
+                EsTemporadaAlta = chkTemporadaAlta.Checked,
+                EsFinDeSemana = chkFinSemana.Checked
+            };
+            TrasladoAeropuerto Traslado = new TrasladoAeropuerto
+            {
+                Pasajeros = int.TryParse(nudPersonas.Text, out int personas) ? personas : 0,
+                Nocturno = true
+            };
+            Excursion excursion = new Excursion
+            {
+                Personas = int.TryParse(nudPersonas.Text, out int Pasajeros) ? Pasajeros : 0,
+                PrecioPorPersona = 50m
+
+            };
+            ConsumoMinibar minibar = new ConsumoMinibar
+            {
+                Cantidad = 3,
+                PrecioUnitario = 3.50m
+            };
+
+            decimal TotalGeneral = reserva.Total + Traslado.Total + excursion.Total + minibar.Total;
+            decimal totalPesos = TotalGeneral * nudTasa.Value;
+            decimal deposito = SistemaViejo.CalcularDeposito(TotalGeneral);
+
+            lstResultados.Items.Add($"Total de la reserva US$ :{reserva.Total:N2}");
+            lstResultados.Items.Add($"Total del traslado US$ :{Traslado.Total:N2}");
+            lstResultados.Items.Add($"Total de la excursión US$ :{excursion.Total:N2}");
+            lstResultados.Items.Add($"Total del minibar US$ :{minibar.Total:N2}");
+            lstResultados.Items.Add($"Total general en US$ : {TotalGeneral:N2}");
+            lstResultados.Items.Add($"Total general en RD$ : {totalPesos:N2}");
+            lstResultados.Items.Add($"Depósito del 30% US$ : {deposito:N2}");
         }
     }
 }

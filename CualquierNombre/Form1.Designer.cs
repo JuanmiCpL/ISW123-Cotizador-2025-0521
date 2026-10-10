@@ -36,6 +36,7 @@
             btnCalcular = new Button();
             btnLimpiar = new Button();
             gbCotizador = new GroupBox();
+            btnViejo = new Button();
             btnCuentaTotal = new Button();
             btnMinibar = new Button();
             btnExcursion = new Button();
@@ -67,7 +68,7 @@
             lblDescuento = new Label();
             lblSubtotal = new Label();
             lstResultados = new ListBox();
-            btnViejo = new Button();
+            btnFactura = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbCotizador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPersonas).BeginInit();
@@ -144,6 +145,7 @@
             // 
             // gbCotizador
             // 
+            gbCotizador.Controls.Add(btnFactura);
             gbCotizador.Controls.Add(btnViejo);
             gbCotizador.Controls.Add(btnCuentaTotal);
             gbCotizador.Controls.Add(btnMinibar);
@@ -178,13 +180,24 @@
             gbCotizador.TabStop = false;
             gbCotizador.Text = "Cotizador";
             // 
+            // btnViejo
+            // 
+            btnViejo.BackColor = Color.FromArgb(255, 192, 192);
+            btnViejo.Location = new Point(26, 472);
+            btnViejo.Name = "btnViejo";
+            btnViejo.Size = new Size(736, 43);
+            btnViejo.TabIndex = 29;
+            btnViejo.Text = "Probar sistema viejo";
+            btnViejo.UseVisualStyleBackColor = false;
+            btnViejo.Click += btnViejo_Click;
+            // 
             // btnCuentaTotal
             // 
             btnCuentaTotal.BackColor = Color.FromArgb(128, 255, 255);
             btnCuentaTotal.ForeColor = SystemColors.ActiveCaptionText;
             btnCuentaTotal.Location = new Point(26, 385);
             btnCuentaTotal.Name = "btnCuentaTotal";
-            btnCuentaTotal.Size = new Size(736, 46);
+            btnCuentaTotal.Size = new Size(394, 46);
             btnCuentaTotal.TabIndex = 28;
             btnCuentaTotal.Text = "CUENTA TOTAL";
             btnCuentaTotal.UseVisualStyleBackColor = false;
@@ -249,7 +262,6 @@
             chkFinSemana.TabIndex = 22;
             chkFinSemana.Text = "Fin de semana (+15%)";
             chkFinSemana.UseVisualStyleBackColor = true;
-            chkFinSemana.CheckedChanged += chkFinSemana_CheckedChanged;
             // 
             // btnDeposito
             // 
@@ -331,9 +343,9 @@
             // btnCopiar
             // 
             btnCopiar.BackColor = Color.Lime;
-            btnCopiar.Location = new Point(26, 437);
+            btnCopiar.Location = new Point(448, 385);
             btnCopiar.Name = "btnCopiar";
-            btnCopiar.Size = new Size(736, 29);
+            btnCopiar.Size = new Size(314, 46);
             btnCopiar.TabIndex = 13;
             btnCopiar.Text = "Copiar para WhatsApp";
             btnCopiar.UseVisualStyleBackColor = false;
@@ -483,16 +495,16 @@
             lstResultados.Size = new Size(379, 744);
             lstResultados.TabIndex = 13;
             // 
-            // btnViejo
+            // btnFactura
             // 
-            btnViejo.BackColor = Color.FromArgb(255, 192, 192);
-            btnViejo.Location = new Point(26, 472);
-            btnViejo.Name = "btnViejo";
-            btnViejo.Size = new Size(736, 43);
-            btnViejo.TabIndex = 29;
-            btnViejo.Text = "Probar sistema viejo";
-            btnViejo.UseVisualStyleBackColor = false;
-            btnViejo.Click += btnViejo_Click;
+            btnFactura.BackColor = Color.FromArgb(255, 255, 128);
+            btnFactura.Location = new Point(26, 437);
+            btnFactura.Name = "btnFactura";
+            btnFactura.Size = new Size(736, 29);
+            btnFactura.TabIndex = 30;
+            btnFactura.Text = "Factura";
+            btnFactura.UseVisualStyleBackColor = false;
+            btnFactura.Click += btnFactura_Click;
             // 
             // frmInicio
             // 
@@ -526,6 +538,7 @@
         private Label lblTarifa;
         private NumericUpDown nudTarifa;
         private CheckBox chkTemporadaAlta;
+        private CheckBox chkFinSemana;
         private Button btnCalcular;
         private Button btnLimpiar;
         private GroupBox gbCotizador;
@@ -553,7 +566,7 @@
         private Button btnPorPersona;
         private NumericUpDown nudPersonas;
         private Button btnDeposito;
-        private CheckBox chkFinSemana;
+
         private Button btnFinSemana;
         private Button btnDesglose;
         private Button btnTraslado;
@@ -561,5 +574,6 @@
         private Button btnMinibar;
         private Button btnCuentaTotal;
         private Button btnViejo;
+        private Button btnFactura;
     }
 }
