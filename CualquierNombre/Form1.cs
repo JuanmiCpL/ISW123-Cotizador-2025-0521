@@ -184,7 +184,7 @@ namespace CualquierNombre
         {
             TrasladoAeropuerto Traslado = new TrasladoAeropuerto
             {
-                Pasajeros = 3,
+                Pasajeros = int.TryParse(nudPersonas.Text, out int personas) ? personas : 0,
                 Nocturno = true
             };
 
@@ -198,9 +198,11 @@ namespace CualquierNombre
         {
             Excursion excursion = new Excursion
             {
-                Personas = 3,
+                Personas = int.TryParse(nudPersonas.Text, out int personas) ? personas : 0,
                 PrecioPorPersona = 50m
+
             };
+
             lstResultados.Items.Add($"Excursión: US${excursion.Personas:F2}");
             lstResultados.Items.Add($"Subtotal: US${excursion.Subtotal:F2}");
             lstResultados.Items.Add($"Descuento: US${excursion.Descuento:F2}");
@@ -233,12 +235,12 @@ namespace CualquierNombre
 
             TrasladoAeropuerto Traslado = new TrasladoAeropuerto
             {
-                Pasajeros = 3,
+                Pasajeros = int.TryParse(nudPersonas.Text, out int personas) ? personas : 0,
                 Nocturno = true
             };
             Excursion excursion = new Excursion
             {
-                Personas = 5,
+                Personas = int.TryParse(nudPersonas.Text, out int pasajeros) ? pasajeros : 0,
                 PrecioPorPersona = 50m
             };
             ConsumoMinibar minibar = new ConsumoMinibar
@@ -254,6 +256,15 @@ namespace CualquierNombre
             lstResultados.Items.Add($"Consumo en minibar: US${minibar.Total:F2}");
 
             lstResultados.Items.Add($"Cuenta total: US${reserva.Total + Traslado.Total + excursion.Total + minibar.Total:F2}");
+        }
+
+        private void btnViejo_Click(object sender, EventArgs e)
+        {
+            lstResultados.Items.Add($"Depósito de 1000: {SistemaViejo.CalcularDeposito(1000m):N2} (debe dar 300.00)");
+            lstResultados.Items.Add($"100 USD a tasa 60: {SistemaViejo.APesos(100m, 60m):N2} (debe dar 6,000.00)");
+            lstResultados.Items.Add($"Tarifa 200 fin de semana: {SistemaViejo.TarifaFinDeSemana(200m, true):N2} (debe dar 230.00)");
+            lstResultados.Items.Add($"Excursión 4 × 50: {SistemaViejo.TotalExcursion(4, 50m):N2} (debe dar 180.00)");
+            lstResultados.Items.Add($"Minibar 3 × 4: {SistemaViejo.TotalMinibar(3, 4m):N2} (debe dar 14.16)");
         }
     }
 }

@@ -67,6 +67,7 @@
             lblDescuento = new Label();
             lblSubtotal = new Label();
             lstResultados = new ListBox();
+            btnViejo = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbCotizador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPersonas).BeginInit();
@@ -143,6 +144,7 @@
             // 
             // gbCotizador
             // 
+            gbCotizador.Controls.Add(btnViejo);
             gbCotizador.Controls.Add(btnCuentaTotal);
             gbCotizador.Controls.Add(btnMinibar);
             gbCotizador.Controls.Add(btnExcursion);
@@ -171,7 +173,7 @@
             gbCotizador.Controls.Add(lblTarifa);
             gbCotizador.Location = new Point(12, 21);
             gbCotizador.Name = "gbCotizador";
-            gbCotizador.Size = new Size(783, 485);
+            gbCotizador.Size = new Size(783, 541);
             gbCotizador.TabIndex = 11;
             gbCotizador.TabStop = false;
             gbCotizador.Text = "Cotizador";
@@ -328,12 +330,13 @@
             // 
             // btnCopiar
             // 
+            btnCopiar.BackColor = Color.Lime;
             btnCopiar.Location = new Point(26, 437);
             btnCopiar.Name = "btnCopiar";
             btnCopiar.Size = new Size(736, 29);
             btnCopiar.TabIndex = 13;
             btnCopiar.Text = "Copiar para WhatsApp";
-            btnCopiar.UseVisualStyleBackColor = true;
+            btnCopiar.UseVisualStyleBackColor = false;
             btnCopiar.Click += btnCopiar_Click;
             // 
             // txtHuesped
@@ -372,7 +375,7 @@
             gbTotales.Controls.Add(lblItbis);
             gbTotales.Controls.Add(lblDescuento);
             gbTotales.Controls.Add(lblSubtotal);
-            gbTotales.Location = new Point(12, 512);
+            gbTotales.Location = new Point(12, 568);
             gbTotales.Name = "gbTotales";
             gbTotales.Size = new Size(783, 205);
             gbTotales.TabIndex = 0;
@@ -477,15 +480,26 @@
             lstResultados.FormattingEnabled = true;
             lstResultados.Location = new Point(813, 29);
             lstResultados.Name = "lstResultados";
-            lstResultados.Size = new Size(379, 684);
+            lstResultados.Size = new Size(379, 744);
             lstResultados.TabIndex = 13;
+            // 
+            // btnViejo
+            // 
+            btnViejo.BackColor = Color.FromArgb(255, 192, 192);
+            btnViejo.Location = new Point(26, 472);
+            btnViejo.Name = "btnViejo";
+            btnViejo.Size = new Size(736, 43);
+            btnViejo.TabIndex = 29;
+            btnViejo.Text = "Probar sistema viejo";
+            btnViejo.UseVisualStyleBackColor = false;
+            btnViejo.Click += btnViejo_Click;
             // 
             // frmInicio
             // 
             AcceptButton = btnCalcular;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1204, 729);
+            ClientSize = new Size(1204, 785);
             Controls.Add(lstResultados);
             Controls.Add(gbTotales);
             Controls.Add(gbCotizador);
@@ -546,5 +560,6 @@
         private Button btnExcursion;
         private Button btnMinibar;
         private Button btnCuentaTotal;
+        private Button btnViejo;
     }
 }
